@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Source+Sans+3:wght@600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cc60ff0d42.js" crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+</head>
+<body class="m-0 p-0 box-border">
+    
+    <div class="mt-20 ml-20 flex justify-start items-center flex-wrap">
+        <!--search bar-->
+        <div class="flex justify-start align-middle items-center opacity-90 mr-4">
+        <input type="text" maxlength="38" dir="auto" placeholder='' class="input-search nav-style rounded-tl-3xl rounded-bl-3xl focus:outline-none pl-4">
+        <button class="nav-style rounded-tr-3xl rounded-br-3xl px-4" type="submit">
+        <i class="icon-search fa-solid fa-magnifying-glass fa-lg"></i>
+        </button>
+        </div>
+        
+        <!--category selection-->
+        <div class="relative rounded-xl transition-all duration-300 btn-category outline-none border-none"><p>All</p>
+           <div class="hidden category-dropdown flex-col gap-2 absolute  bg-white rounded-xl py-2 px-4 mr-4 my-2 font-source-sans font-semibold text-black top-0 left-0">
+                <a href="#" class="item">All</a>
+           </div>
+        </div>
+    </div>
+    <!--sections-->
+    
+        <div id="sections" class="mt-20 ml-20 flex gap-4 flex-wrap">
+        <!--section part from js(read me)-->
+           
+        <!--add new section-->
+        <div class="add-new-section">
+            <i class="add-category-icon fa-solid fa-plus cursor-pointer"></i>
+            <input id="input-new-section" type="text" maxlength="38" dir="auto" placeholder='Add Category' class="placeholder:text-black focus:outline-none"></input>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
