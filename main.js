@@ -81,7 +81,8 @@ function addingTask (event){
         const inputNewSection = categorySection.querySelector(".category-name");
         const tasksCon = categorySection.querySelector(".tasks-con")
         const taskInput = categorySection.querySelector(".task-input");
-        const taskCon= document.createElement("div");
+        if(taskInput.value.trim()){
+            const taskCon= document.createElement("div");
         tasksCon.append(taskCon);
         taskCon.classList.add("task-con");
         const taskContent = document.createElement("p");
@@ -101,6 +102,8 @@ function addingTask (event){
         taskEdit.classList.add("task-edit");
         taskEdit.innerHTML=' <i class="check-icon fa-solid fa-check cursor-pointer" style="color: #adb1b7;"></i>\
         <i class="remove-task-icon fa-solid fa-trash cursor-pointer" style="color: #adb1b7;"></i>';   };
+        }
+        
         }
         
 
@@ -154,15 +157,17 @@ function selectCategory (event){
     const item =event.target.classList.contains("item")
     const itemContent= event.target
     const categoryNames = document.querySelectorAll(".category-name")
-    const categorySections = document.querySelectorAll(".category-section")
-    Array.from(categorySections).forEach((i) =>{
-            i.classList.remove("hidden")
-            addNewSection.classList.remove('hidden');
-    });
-    const taskCons = document.querySelectorAll('.task-con')
-    Array.from(taskCons).forEach((i) =>
-                    i.classList.remove('hidden')
-                )
+    Array.from(categoryNames).forEach((i) =>{
+        i.classList.remove('bg-yellow-400')
+    })
+    if(document.querySelector('.task-con')){
+        const taskContent =document.querySelectorAll('.task-content')
+        taskContent.forEach((i) =>{
+                i.classList.remove('bg-yellow-400')
+            
+        })
+    }
+    
     if(item){
              Array.from(categoryNames).forEach((i) =>{      
             if(i.innerText!==itemContent.innerText && itemContent.innerText !=="All"){
@@ -176,40 +181,35 @@ function selectCategory (event){
 
 function search (){
     const addNewSection = document.querySelector('.add-new-section')
-    const searchData= inputSearch.value
-    const taskContents = document.querySelectorAll(".task-content")
+    const searchData= inputSearch.value.toLowerCase()
     const categorySections= document.querySelectorAll('.category-section')
-    const taskCons = document.querySelectorAll('.task-con')
+    const categoryName = document.querySelectorAll(".category-name")
+    let resetChanges= true
     Array.from(categorySections).forEach((e) =>
     {
-                e.classList.remove('hidden')  
-            }) 
-    Array.from(taskCons).forEach((i) =>
-                i.classList.remove('hidden')
-            )       
-    addNewSection.classList.remove('hidden')        
-    if(!document.querySelector('.task-con')){
-        Array.from(categorySections).forEach((i) =>
-               {
-                        i.classList.add('hidden')
-                        addNewSection.classList.add('hidden')   
-                    })
-    }else{   
-        addNewSection.classList.add('hidden')       
-        Array.from(taskContents).forEach((e) =>{ 
-        if(!e.innerText.includes(searchData)){
-            const taskCon= e.closest(".task-con")
-            taskCon.classList.add('hidden')
-            Array.from(categorySections).forEach((i) =>
-                {
-                    if(!i.querySelector('.task-con')){
-                        i.classList.add('hidden')
-                    }
-                }
-            )
-
+        const categoryName = e.querySelector('.category-name')
+        if(resetChanges)  {
+            categoryName.classList.remove('bg-yellow-400')
+            if(e.querySelector('.task-con')){
+                const taskContent =e.querySelectorAll('.task-content')
+            taskContent.forEach((i) =>{
+                    i.classList.remove('bg-yellow-400')
+            })
+            resetChanges=false
         }
-        })
-            }
         
+        if (categoryName.innerText.toLowerCase().includes(searchData)){
+            categoryName.classList.add('bg-yellow-400')
         }
+        if(e.querySelector('.task-con')){
+            const taskContent =e.querySelectorAll('.task-content')
+            taskContent.forEach((i) =>{
+                if(i.innerText.toLowerCase().includes(searchData)){
+                    i.classList.add('bg-yellow-400')
+                }
+            })
+        }
+        }
+    })
+}        
+        

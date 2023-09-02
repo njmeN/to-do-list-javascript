@@ -13,7 +13,7 @@
         @apply w-1/4 bg-white max-h-[45rem] rounded-lg flex flex-col justify-between
     }
     .category-name{
-        @apply  font-source-sans font-semibold text-xl 
+        @apply   font-source-sans font-semibold text-xl 
     }
     .font-aw-trash{
         @apply 
