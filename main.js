@@ -82,7 +82,7 @@ function addingTask (event){
         const tasksCon = categorySection.querySelector(".tasks-con")
         const taskInput = categorySection.querySelector(".task-input");
         if(taskInput.value.trim()){
-            const taskCon= document.createElement("div");
+        const taskCon= document.createElement("div");
         tasksCon.append(taskCon);
         taskCon.classList.add("task-con");
         const taskContent = document.createElement("p");
@@ -157,6 +157,16 @@ function selectCategory (event){
     const item =event.target.classList.contains("item")
     const itemContent= event.target
     const categoryNames = document.querySelectorAll(".category-name")
+    const categorySections = document.querySelectorAll(".category-section")
+    Array.from(categorySections).forEach((i) =>{
+            i.classList.remove("hidden")
+            addNewSection.classList.remove('hidden');
+    });
+    const taskCons = document.querySelectorAll('.task-con')
+    Array.from(taskCons).forEach((i) =>
+                    i.classList.remove('hidden')
+                )
+    
     Array.from(categoryNames).forEach((i) =>{
         i.classList.remove('bg-yellow-400')
     })
@@ -166,8 +176,7 @@ function selectCategory (event){
                 i.classList.remove('bg-yellow-400')
             
         })
-    }
-    
+    }            
     if(item){
              Array.from(categoryNames).forEach((i) =>{      
             if(i.innerText!==itemContent.innerText && itemContent.innerText !=="All"){
