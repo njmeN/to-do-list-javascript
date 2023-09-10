@@ -18,7 +18,6 @@ sections.addEventListener("click", completedTask);
 function newSection (event){
     sameInput=false
     if(inputNewSection.value.trim()){
-        const categoryDropdown =document.querySelector(".category-dropdown");
         const categoryItems= document.getElementsByClassName("item")
         for (var i=0; i<categoryItems.length; i++){
             if(inputNewSection.value ===categoryItems[i].innerText){
@@ -116,7 +115,6 @@ function removeSection(event){
                 const getIndex =todoData.indexOf(e);
                 todoData.splice(getIndex, 1)
                 categorySection.remove()
-                const categoryDropdown =document.querySelector(".category-dropdown");
                 const categoryItems= document.getElementsByClassName("item")
                 for (var i=0; i<categoryItems.length; i++){
                     if(e[0] ===categoryItems[i].innerText){
@@ -189,25 +187,27 @@ function selectCategory (event){
 }    
 
 function search (){
-    const addNewSection = document.querySelector('.add-new-section')
     const searchData= inputSearch.value.toLowerCase()
     const categorySections= document.querySelectorAll('.category-section')
-    const categoryName = document.querySelectorAll(".category-name")
+    const categoryNames = document.querySelectorAll(".category-name")
     let resetChanges= true
-    Array.from(categorySections).forEach((e) =>
+    
+        Array.from(categorySections).forEach((e) =>
     {
         const categoryName = e.querySelector('.category-name')
         if(resetChanges)  {
-            categoryName.classList.remove('bg-yellow-400')
+            categoryNames.forEach((i) =>{
+                i.classList.remove('bg-yellow-400')
+            } )
             if(e.querySelector('.task-con')){
                 const taskContent =e.querySelectorAll('.task-content')
             taskContent.forEach((i) =>{
                     i.classList.remove('bg-yellow-400')
+                    
             })
             resetChanges=false
-        }
-        
-        if (categoryName.innerText.toLowerCase().includes(searchData)){
+        }}
+            if (categoryName.innerText.toLowerCase().includes(searchData)){
             categoryName.classList.add('bg-yellow-400')
         }
         if(e.querySelector('.task-con')){
@@ -218,7 +218,10 @@ function search (){
                 }
             })
         }
-        }
+        
+    
     })
+    
+    
 }        
         
