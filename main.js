@@ -194,22 +194,24 @@ function search (){
     
         Array.from(categorySections).forEach((e) =>
     {
-        const categoryName = e.querySelector('.category-name')
         if(resetChanges)  {
             categoryNames.forEach((i) =>{
                 i.classList.remove('bg-yellow-400')
+                if(e.querySelector('.task-con')){
+                    const taskContent =e.querySelectorAll('.task-content')
+                taskContent.forEach((i) =>{
+                        i.classList.remove('bg-yellow-400')
+                        
+                })
+                resetChanges=false
+            }
             } )
-            if(e.querySelector('.task-con')){
-                const taskContent =e.querySelectorAll('.task-content')
-            taskContent.forEach((i) =>{
-                    i.classList.remove('bg-yellow-400')
-                    
-            })
-            resetChanges=false
-        }}
-            if (categoryName.innerText.toLowerCase().includes(searchData)){
-            categoryName.classList.add('bg-yellow-400')
+            }
+        categoryNames.forEach((i) =>{
+            if (i.innerText.toLowerCase().includes(searchData)){
+                i.classList.add('bg-yellow-400')
         }
+        })
         if(e.querySelector('.task-con')){
             const taskContent =e.querySelectorAll('.task-content')
             taskContent.forEach((i) =>{
@@ -217,11 +219,18 @@ function search (){
                     i.classList.add('bg-yellow-400')
                 }
             })
-        }
+    
+    }
+           
+        })
+    
+    }
+            
+        
         
     
-    })
     
+     
     
-}        
+        
         
